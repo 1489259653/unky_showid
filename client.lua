@@ -28,12 +28,14 @@ Citizen.CreateThread(function()
                 local ped = GetPlayerPed(GetPlayerFromServerId(player.source))
   
                 if DoesEntityExist(ped) then
-                    local distance = #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(ped))
-                    if Config.debug then print(ped,distance) end
-                    if distance < Config.Disctance then -- The value Config.Disctance determines the maximum distance for ID visibility
-                        local playerCoords = GetEntityCoords(ped) + vector3(0, 0, Config.offsetY)
-                        DrawText3D(playerCoords, player.tag)
-                    end
+			if ped ~= GetPlayerPed() then
+                    		local distance = #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(ped))
+                    		if Config.debug then print(ped,distance) end
+	                	if distance < Config.Disctance then -- The value Config.Disctance determines the maximum distance for ID visibility
+                        		local playerCoords = GetEntityCoords(ped) + vector3(0, 0, Config.offsetY)
+                        		DrawText3D(playerCoords, player.tag)
+                   	 	end
+			end
                 end
             end
         end
